@@ -10,5 +10,5 @@ require 'database.php';
 require 'model.php';
 require 'controller.php';
 
-require 'apps.php'; 
+require 'apps.php';  
 ?>

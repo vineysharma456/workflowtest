@@ -123,11 +123,16 @@
                 <form method="get" action="assign_emptask">
     <input type="hidden" name="id" value="<?php echo $row['id']?>">
     <button type="submit"> TASK</button>
-    <td><?php $st = new emp_db();
+    <td><?php 
+    // $st = new emp_db();
+    $st = new emp_db();
     $res = $st->second('status', $row['id']);
-
-        $ko = $res[0]['status'];
-        echo $ko;
+    
+    if (is_array($res) && !empty($res[0]['status'])) {
+        echo $res[0]['status'];
+    } else {
+        echo 'NULL';
+    }
    
     ?></td>
 </form>
@@ -139,9 +144,15 @@
                        <td class="p-2 px-4">
                        <?php 
                   
-                       $res3= $st->second('task_no',$row['id']);
-                       $ko3 =$res3[0]['task_no'];
-                       echo $ko3;
+                  $res3 = $st->second('task_no', $row['id']);
+                  $ko3 = isset($res3[0]['task_no']) ? $res3[0]['task_no'] : null;
+                  
+                  if (!empty($ko3)) {
+                      echo $ko3;
+                  } else {
+                      echo 'NULL';
+                  }
+                
                        ?>
 
                        </td>
